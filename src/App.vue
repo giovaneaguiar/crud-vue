@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1>Formulário</h1>
-    <b-card>
-      <b-form-group label="Nome: ">
+    <b-card bg-variant="dark" text-variant="white" class="m-5">
+      <b-form-group label="Nome: " label-size="lg" label-align="left">
         <b-form-input
           type="text"
           size="lg"
@@ -10,7 +10,7 @@
           placeholder="Informe o Nome"
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="E-mail: ">
+      <b-form-group label="E-mail: " label-size="lg" label-align="left">
         <b-form-input
           type="email"
           size="lg"
@@ -21,6 +21,13 @@
       <hr />
       <b-button @click.prevent="salvar" size="lg" variant="primary"
         >Salvar</b-button
+      >
+      <b-button
+        @click.prevent="obterUsuarios"
+        size="lg"
+        variant="success"
+        class="ml-2"
+        >Obter Usuários</b-button
       >
     </b-card>
   </div>
@@ -57,6 +64,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 </style>
