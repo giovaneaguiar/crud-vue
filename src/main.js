@@ -3,6 +3,7 @@ import "mutationobserver-shim";
 import "./plugins/bootstrap-vue";
 import Vue from "vue";
 import App from "./App.vue";
+import "./plugins/axios";
 
 Vue.config.productionTip = false;
 

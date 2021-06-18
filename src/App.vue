@@ -18,27 +18,36 @@
           placeholder="Informe o E-mail"
         ></b-form-input>
       </b-form-group>
-      <hr>
-      <b-button @click.prevent="salvar" size="lg" variant="primary">Salvar</b-button>
+      <hr />
+      <b-button @click.prevent="salvar" size="lg" variant="primary"
+        >Salvar</b-button
+      >
     </b-card>
   </div>
 </template>
 
 <script>
-
-
 export default {
-
-  data(){
+  data() {
     return {
       usuario: {
-        nome: '',
-        email: '',
-      }
-    }
-  }
-
-}
+        nome: "",
+        email: "",
+      },
+    };
+  },
+  methods: {
+    salvar() {
+      //"submeter" o formulário.
+      this.$http.post("usuarios.json", this.usuario).then(() => {
+        this.usuario.nome = "";
+        this.usuario.email = "";
+        //limpa o formulário após post.
+      });
+      //this.$http - acessar o axios globalmente.
+    },
+  },
+};
 </script>
 
 <style>
