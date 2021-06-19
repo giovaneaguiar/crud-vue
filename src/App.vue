@@ -60,14 +60,24 @@ export default {
     };
   },
   methods: {
+    limpar() {
+      this.usuario.nome = "";
+      this.usuario.email = "";
+      this.id = null;
+    },
+    carregar(id) {
+      this.id = id;
+      this.usuario = { ...this.usuarios[id] };
+    },
+    excluir(id) {
+      this.$http.delete(`/usuarios/${id}.json`).then(() => this.limpar());
+      //deletar o dado com o id certo.
+    },
     salvar() {
       //"submeter" o formulário.
-      this.$http.post("usuarios.json", this.usuario).then(() => {
-        //inserir dados no firebase.
-        this.usuario.nome = "";
-        this.usuario.email = "";
-        //limpa o formulário após post.
-      });
+      this.$http.post("usuarios.json", this.usuario).then(() => this.limpar());
+      //inserir dados no firebase
+      //e limpa o formulário após post.
       //this.$http - acessar o axios globalmente.
     },
     obterUsuarios() {
