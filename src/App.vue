@@ -26,10 +26,18 @@
         @click.prevent="obterUsuarios"
         size="lg"
         variant="success"
-        class="ml-2"
+        class="ml-4"
         >Obter Usuários</b-button
       >
     </b-card>
+    <hr />
+    <b-list-group>
+      <b-list-group-item v-for="(usuario, id) in usuarios" :key="id">
+        <strong>Nome: </strong> {{ usuario.nome }} <br />
+        <strong>Email: </strong>{{ usuario.email }} <br />
+        <strong>ID: </strong>{{ id }}
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
@@ -37,6 +45,7 @@
 export default {
   data() {
     return {
+      usuarios: [],
       usuario: {
         nome: "",
         email: "",
@@ -47,11 +56,18 @@ export default {
     salvar() {
       //"submeter" o formulário.
       this.$http.post("usuarios.json", this.usuario).then(() => {
+        //inserir dados no firebase.
         this.usuario.nome = "";
         this.usuario.email = "";
         //limpa o formulário após post.
       });
       //this.$http - acessar o axios globalmente.
+    },
+    obterUsuarios() {
+      this.$http.get("usuarios.json").then((res) => {
+        //get para obter usuarios do firebase.
+        this.usuarios = res.data;
+      });
     },
   },
 };
