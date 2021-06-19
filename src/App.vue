@@ -67,6 +67,7 @@ export default {
       this.$http.get("usuarios.json").then((res) => {
         //get para obter usuarios do firebase.
         this.usuarios = res.data;
+        console.log(res.data);
       });
     },
   },
