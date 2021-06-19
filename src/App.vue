@@ -26,7 +26,7 @@
         @click.prevent="obterUsuarios"
         size="lg"
         variant="success"
-        class="ml-4"
+        class="ml-2"
         >Obter Usuários</b-button
       >
     </b-card>
@@ -35,7 +35,13 @@
       <b-list-group-item v-for="(usuario, id) in usuarios" :key="id">
         <strong>Nome: </strong> {{ usuario.nome }} <br />
         <strong>Email: </strong>{{ usuario.email }} <br />
-        <strong>ID: </strong>{{ id }}
+        <strong>ID: </strong>{{ id }} <br />
+        <b-button variant="warning" size="lg" @click="carregar(id)"
+          >Carregar</b-button
+        >
+        <b-button variant="danger" size="lg" class="ml-2" @click="excluir(id)"
+          >Excluir</b-button
+        >
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -46,6 +52,7 @@ export default {
   data() {
     return {
       usuarios: [],
+      id: null,
       usuario: {
         nome: "",
         email: "",
